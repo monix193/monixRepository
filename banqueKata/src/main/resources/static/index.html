@@ -1,0 +1,145 @@
+   <!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<title>banque</title>
+<link rel="stylesheet" type="text/css" href="bootstrap/bootstrap.css" >
+<link rel="stylesheet" type="text/css" href="css/style.css" >
+
+</head>
+<body ng-app="myBanqueApp"  ng-controller="myBanqueController">
+<div class="container">
+<div class="col-md-6 col-sm-12  col-xs-12">
+<div class="panel panel-info spacer"> 
+<div class="panel-heading ">Compte </div>
+<div class="panel panel-body">
+<div ng-if="emptyCpt!=null">
+<span class="alert-danger">{{emptyCpt}}</span>
+</div>
+<form>
+<div class="form-group">
+<label>code Compte</label>
+<input type="text" ng-model="codeCompte">
+<button class="btn btn-primary" ng-click="chargerCompte()">charger</button>
+</div>
+
+</form>
+</div>
+</div>
+</div>
+<div  ng-if="compte!=null">
+<div class="col-md-6 col-sm-12  col-xs-12">
+<div class="panel panel-info spacer"> 
+<div class="panel-heading ">Etat du Compte </div>
+<div class="panel panel-body">
+<div class="form-group">
+<label>Solde :</label>
+<label>{{compte.solde}}</label>
+</div>
+<div class="form-group">
+<label>Date Creation :</label>
+<label>{{compte.daCreation|date:'dd-MM-yyyy HH:mm:ss'}}</label>
+</div>
+<div  ng-if="compte.type=='CE'">
+<label>Taux :</label>
+<label>{{compte.taux}}%</label>
+</div>
+
+<div  ng-if="compte.type=='CC'">
+<label>Decouvert :</label>
+<label>{{compte.decouvert}}</label>
+</div>
+</div>
+</div>
+</div>
+
+<div class="col-md-6 col-sm-12  col-xs-12">
+<div class="panel panel-info spacer"> 
+<div class="panel-heading ">Operation </div>
+<div class="panel panel-body">
+<form>
+<div ng-if="errorMsg!=null">
+<span class="alert-danger">{{errorMsg}}</span>
+</div>
+<div class="form-group">
+<label> Versement</label>
+<input  type="radio"   ng-model="operation.type"  value="versement"/>
+<label> Retrait</label>
+<input  type="radio"   ng-model="operation.type"  value="retrait"/>
+
+<!-- <label>virement</label>
+<input  type="radio"   ng-model="operation.type"  value="virement"/> -->
+</div>
+
+<div class="form-group">
+
+<span>
+<label> montant</label>
+<input  type="text"   ng-model="operation.montant"/>
+</span>
+<span  ng-if="operation.type=='virement'">
+<label> vers le compte</label>
+<input  type="text"   ng-model="operation.cpt2"/>
+</span>
+</div>
+
+
+<button class="btn btn-primary" ng-click="saveOperation()">enregistrer</button>
+
+</form>
+
+
+</div>
+</div>
+</div>
+
+
+
+<div class="col-md-6 col-sm-12  col-xs-12">
+<div class="panel panel-info spacer"> 
+<div class="panel-heading ">Liste des Operations du compte </div>
+<div class="panel panel-body">
+<table class="table table-striped">
+<thead>
+<th>numero</th><th>Date</th><th>Debit</th><th>Credit</th>
+</tr>
+<tr ng-repeat="op in pageOperations.operation">
+
+<td>{{op.numeroOperation}}</td>
+<td>{{op.dateOperation |date:'dd-MM-yyyy HH:mm:ss'}}</td>
+
+<td>
+<div  ng-if="op.type=='R'">
+{{op.montant}}
+</div>
+</td>
+<td>
+<div  ng-if="op.type=='V'">
+{{op.montant}}
+</div>
+</td>
+</tr>
+
+</thead>
+</table>
+
+
+</div>
+<div class="container spacer">
+<ul class="nav nav-pills">
+    <li class="clickable" ng-class="{active:$index==pageCourante}" ng-repeat="p in pages track by $index">
+       <a ng-click="goToPage($index)"> {{$index+1}}</a>
+    <li>
+</ul>
+</div>
+</div>
+</div>
+
+ </div> 
+
+</div>
+</body>
+<script  type="text/javascript" src="angular/angular.min.js"></script>
+<script  type="text/javascript" src="js/myApp.js"></script>
+</html>
