@@ -1,6 +1,6 @@
 # monixRepository
 Dans ce projet il s'agit d'un POC de mise en place de microservices avec SpringBoot permettant 
-des gerer des operations de d'ajout et de retrait d'un client de banque.
+de gerer des operations de versement et de retrait de montant dans le compte d'uin client donné.
 Environnement :
 Java 8,
 Springboot,
