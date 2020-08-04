@@ -130,7 +130,7 @@ import com.monix.work.restController.ExceptionHandler.OperationServiceException;
 			
 			Mockito.when(compteRepository.findAll()).thenReturn(compteList);
 			
-			assertThat(compteMetier.listCompte()).isEqualTo(compteList);
+			assertThat(compteMetier.listCompte().size()).isEqualTo(compteList.size());
 		}
 
 		

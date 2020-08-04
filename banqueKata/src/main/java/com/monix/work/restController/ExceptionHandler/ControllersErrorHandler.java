@@ -11,7 +11,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 public class ControllersErrorHandler {
 
 	
-	/*@ExceptionHandler(Exception.class)
+	@ExceptionHandler(Exception.class)
 	public  ResponseEntity <ErrorResponse> handleError(Exception e)
 	{
 		ErrorResponse errorResponse=new ErrorResponse();
@@ -45,7 +45,7 @@ public class ControllersErrorHandler {
 		
 	}
 	
-	/*@ExceptionHandler(RuntimeException.class)
+	@ExceptionHandler(RuntimeException.class)
 	public  ResponseEntity <ErrorResponse> handleErrorRuntimeException (RuntimeException e)
 	{
 		ErrorResponse errorResponse=new ErrorResponse();
@@ -55,6 +55,6 @@ public class ControllersErrorHandler {
 		return new ResponseEntity <ErrorResponse> (errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
 		
 	}
-*/
+
 	
 }

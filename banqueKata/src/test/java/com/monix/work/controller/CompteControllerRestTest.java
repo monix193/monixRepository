@@ -1,11 +1,11 @@
 package com.monix.work.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -18,8 +18,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.monix.work.entities.Client;
 import com.monix.work.entities.Compte;
@@ -38,6 +38,9 @@ public class CompteControllerRestTest {
 
 	@MockBean
 	private CompteMetier compteMetier;
+	
+
+	ObjectMapper objectMapper = new ObjectMapper();
 	
 	@Test
 	public void testGetCompteTest() throws Exception {
@@ -68,7 +71,7 @@ Mockito.when(compteMetier.getCompte("C1111")).thenReturn(compte);
 				MediaType.APPLICATION_JSON);
 
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
-		String expectedJson = this.mapToJson(compte);
+		String expectedJson = this.objectMapper.writeValueAsString(compte);
 		String outputInJson = result.getResponse().getContentAsString();
 		assertThat(outputInJson).contains("C1111");
 	}
@@ -88,7 +91,7 @@ Mockito.when(compteMetier.getCompte("C1111")).thenReturn(compte);
 		
 		Compte  compte1= new CompteCourant();
 		compte1.setClient(client);
-		compte1.setCodeCompte("C1234");
+		compte1.setCodeCompte("C4321");
 		compte1.setDaCreation(new Date());
 		compte1.setEmploye(employe);
 		compte1.setSolde(0);
@@ -111,21 +114,20 @@ Mockito.when(compteMetier.getCompte("C1111")).thenReturn(compte);
 				URI).accept(
 				MediaType.APPLICATION_JSON);
 
-		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+		        mockMvc.perform(requestBuilder).
+				andExpect(MockMvcResultMatchers.status().isOk()).
+				andExpect(MockMvcResultMatchers.jsonPath("$[0].codeCompte", Matchers.is("C4321"))).
+		        andExpect(MockMvcResultMatchers.jsonPath("$[1].codeCompte", Matchers.is("C1234")));
 
-		String expectedJson = this.mapToJson(compteList);
+	/*	String expectedJson = objectMapper.writeValueAsString(compteList);
 		String outputInJson = result.getResponse().getContentAsString();
-		assertThat(outputInJson).isEqualTo(expectedJson);
+		assertThat(outputInJson).isEqualTo(expectedJson);*/
 	}
 
 
 /**
  * Maps an Object into a JSON String. Uses a Jackson ObjectMapper.
  */
-private String mapToJson(Object object) throws JsonProcessingException {
-	ObjectMapper objectMapper = new ObjectMapper();
-	return objectMapper.writeValueAsString(object);
-}
 
 
 }
