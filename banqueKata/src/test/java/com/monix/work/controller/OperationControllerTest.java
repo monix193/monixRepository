@@ -81,7 +81,7 @@ public class OperationControllerTest {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				
 				.put(URI)
-	            .param("code","C1111")
+	            .param("compte",inputInJson)
 	            .param("montant","20000D")   
 	            .param("codeEmp","E1")
 				.accept(MediaType.APPLICATION_JSON).content(inputInJson)
@@ -133,7 +133,7 @@ public class OperationControllerTest {
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				
 				.put(URI)
-	            .param("code","C1111")
+	            .param("compte",inputInJson)
 	            .param("montant","20000D")   
 	            .param("codeEmp","E1")
 				.accept(MediaType.APPLICATION_JSON).content(inputInJson)
