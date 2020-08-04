@@ -7,7 +7,7 @@ import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
 @Configuration
 public class MyConfig {
     
-	@Bean
+	//@Bean
 	public SimpleJaxWsServiceExporter getJWS() {
 		SimpleJaxWsServiceExporter exporter= new SimpleJaxWsServiceExporter();
 		exporter.setBaseAddress("http://localhost:8089/banque");
