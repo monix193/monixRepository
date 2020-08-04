@@ -34,22 +34,22 @@ public class OperationRestController {
 	}
 	
 	@RequestMapping(value="/versement",method=RequestMethod.PUT)
-	public Compte verser(@RequestParam String code, 
+	public Compte verser(@RequestParam Compte compte, 
 		               	@RequestParam Double montant, 
 		               	@RequestParam String codeEmp) {
-		return operationMetier.verser(code, montant, codeEmp);
+		return operationMetier.verser(compte, montant, codeEmp);
 	}
 
 	@RequestMapping(value="/retrait",method=RequestMethod.PUT)
-	public Compte retirer(@RequestParam String code, 
+	public Compte retirer(@RequestParam Compte compte,  
 		               	@RequestParam Double montant, 
 		               	@RequestParam String codeEmp){
-		return operationMetier.retirer(code, montant, codeEmp);
+		return operationMetier.retirer(compte, montant, codeEmp);
 	}
 
 	@RequestMapping(value="/virement",method=RequestMethod.PUT)
-	public Compte virement(@RequestParam String code1,@RequestParam String code2,@RequestParam Double montant, @RequestParam String codeEmp) {
-		return operationMetier.virement(code1, code2, montant, codeEmp);
+	public Compte virement(@RequestParam Compte compte1,@RequestParam Compte compte2,@RequestParam Double montant, @RequestParam String codeEmp) {
+		return operationMetier.virement( compte1, compte2, montant, codeEmp);
 	}
 
 		

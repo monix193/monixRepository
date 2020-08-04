@@ -48,10 +48,9 @@ public class OperationMetierImpl implements OperationMetier{
 	}
 
 	@Override
-	public Compte verser(String code, Double montant, String codeEmp) {
+	public Compte verser(Compte c, Double montant, String codeEmp) {
 		// TODO Auto-generated method stub
 		if (montant==null || montant<= 0) throw new OperationServiceException("le montant saisi est invalide ");
-		Compte c =compteRepository.getOne(code);
 		if (c==null) throw new OperationServiceException("Ce compte n'existe pas : veuillez recommencer");
 		Employe e =employeRepository.getOne(codeEmp);
 		Operation o= new Versement();
@@ -65,13 +64,12 @@ public class OperationMetierImpl implements OperationMetier{
 	}
 
 	@Override
-	public Compte retirer(String code, Double montant, String codeEmp) {
+	public Compte retirer(Compte c,Double montant , String codeEmp) {
 		// TODO Auto-generated method stub
-		if (montant==null || montant<= 0) throw new OperationServiceException("le montant saisi est invalide ");
-		Compte c =compteRepository.getOne(code);
+		if ( montant == null || montant<= 0) throw new OperationServiceException("le montant saisi est invalide ");
 		if (c==null) throw new OperationServiceException("Ce compte n'existe pas : veuillez recommencer");
 		
-		if(c.getSolde()<montant) throw new OperationServiceException("solde Insuffisant");
+		if(c.getSolde()< montant) throw new OperationServiceException("solde Insuffisant");
 		
 		Employe e =employeRepository.getOne(codeEmp);
 		Operation o= new Retrait();
@@ -86,10 +84,10 @@ public class OperationMetierImpl implements OperationMetier{
 	}
 
 	@Override
-	public Compte virement(String code1, String code2, Double montant, String codeEmp) {
+	public Compte virement(Compte c1, Compte c2, Double montant, String codeEmp) {
 
-		Compte c =retirer(code1, montant, codeEmp);
-		verser(code2, montant, codeEmp);
+		Compte c =retirer(c1, montant, codeEmp);
+		verser(c2, montant, codeEmp);
 		return c;
 	
 			}

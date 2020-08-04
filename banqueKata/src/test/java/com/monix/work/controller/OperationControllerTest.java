@@ -76,7 +76,7 @@ public class OperationControllerTest {
 		
 		String URI = "/versement";
 		
-		Mockito.when(operationMetier.verser("C1111", 20000D, "E1")).thenReturn(compte);
+		Mockito.when(operationMetier.verser(compte, 20000D, "E1")).thenReturn(compte);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				
@@ -128,7 +128,7 @@ public class OperationControllerTest {
 		
 		String URI = "/retrait";
 		
-		Mockito.when(operationMetier.retirer("C1111", 20000D, "E1")).thenReturn(compte);
+		Mockito.when(operationMetier.retirer(compte, 20000D, "E1")).thenReturn(compte);
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders
 				

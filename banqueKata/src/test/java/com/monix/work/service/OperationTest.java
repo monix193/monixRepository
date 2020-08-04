@@ -110,6 +110,7 @@ public class OperationTest {
 		    assertThat(compte.getSolde()).isEqualTo(20000D);
 	}
 	
+	@Test
 	public  void TestRetrait()
 	{
 		compte.setSolde(20000D);
@@ -127,11 +128,11 @@ public class OperationTest {
 		try
 		{
 			compte.setSolde(20000D);
-			retrait.setMontant(5000000D);
+			retrait.setMontant(21000D);
 			 
-			 operationMetier.retirer(compte.getCodeCompte(), retrait.getMontant(), employe.getCodeEmploye());
+			 operationMetier.retirer(compte, retrait.getMontant(), employe.getCodeEmploye());
 		    Mockito.when(operationRepository.save(retrait)).thenReturn(retrait);
-		    
+		  
 		  
 		}
 		catch (OperationServiceException e) {
@@ -148,10 +149,10 @@ public class OperationTest {
 		try
 		{
 		compte.setSolde(20000D);
-		retrait.setMontant(-50000D);
+		versement.setMontant(-50000D);
 		
-	    operationMetier.verser(compte.getCodeCompte(), retrait.getMontant(), employe.getCodeEmploye());
-	    Mockito.when(operationRepository.save(retrait)).thenReturn(retrait);
+	    operationMetier.verser(compte, versement.getMontant(), employe.getCodeEmploye());
+	    Mockito.when(operationRepository.save(versement)).thenReturn(versement);
 	    
 	}
 	catch (OperationServiceException e) {
