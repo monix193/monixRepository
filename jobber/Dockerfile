@@ -1,6 +1,6 @@
 FROM openjdk:8-alpine
 
-RUN apk update && add /bin/bash
+RUN apt update && add /bin/bash
 RUN mkdir -p /opt/app
 ENV PROJECT_HOME /opt/app
 COPY jobber-0.0.1-SNAPSHOT.jar ${PROJECT_HOME}
