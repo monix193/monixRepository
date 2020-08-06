@@ -6,8 +6,8 @@ import com.monix.work.entities.Compte;
 
 public interface CompteMetier {
 
-	public Compte saveCompte(Compte c);
-	public Compte getCompte(String s);
-	public List <Compte> listCompte();
+	Compte saveCompte(Compte c);
+	Compte getCompte(String s);
+	List <Compte> listCompte();
 
 }

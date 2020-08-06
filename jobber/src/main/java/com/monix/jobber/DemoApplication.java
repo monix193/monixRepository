@@ -1,13 +1,13 @@
-package com.monix.work;
+package com.monix.jobber;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-//@ImportResource("spring-beans.xml")
-public class BanqueKataApplication {
+public class DemoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(BanqueKataApplication.class, args);
+		SpringApplication.run(DemoApplication.class, args);
 	}
+
 }

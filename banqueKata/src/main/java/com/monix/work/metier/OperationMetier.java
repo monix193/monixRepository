@@ -10,12 +10,12 @@ import com.monix.work.entities.Versement;
 
 public interface OperationMetier {
 
-	public Operation saveOperation(Operation c);
-	public List <Operation> listOperation();
-	public Compte verser(Compte c,Double montant , String codeEmp) ;
-	public Compte retirer(Compte c,Double montant,String codeEmp) ;
-	public Compte virement(Compte c1,Compte c2, Double solde,String codeEmp) ;
-	public  PageOperation getOperation(String codeCompte, int page, int size);
+	Operation saveOperation(Operation c);
+	List <Operation> listOperation();
+	Compte verser(Compte c, Double montant, String codeEmp) ;
+	Compte retirer(Compte c, Double montant, String codeEmp) ;
+	Compte virement(Compte c1, Compte c2, Double solde, String codeEmp) ;
+	PageOperation getOperation(String codeCompte, int page, int size);
 	
 
 }

@@ -5,6 +5,6 @@ import java.util.List;
 import com.monix.work.entities.Client;
 
 public interface ClientMetier {
-	public Client saveClient(Client c);
-	public List <Client> listClient();
+	Client saveClient(Client c);
+	List <Client> listClient();
 }

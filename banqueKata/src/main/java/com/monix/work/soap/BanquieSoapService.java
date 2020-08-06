@@ -1,17 +1,11 @@
 package com.monix.work.soap;
 
-import javax.jws.WebMethod;
-import javax.jws.WebParam;
 import javax.jws.WebService;
 
-import org.springframework.stereotype.Component;
-
-import com.monix.work.entities.Compte;
-import com.monix.work.entities.Operation;
-import com.monix.work.entities.PageOperation;
 import com.monix.work.metier.CompteMetier;
 import com.monix.work.metier.OperationMetier;
-import com.monix.work.restController.ExceptionHandler.OperationServiceException;
+
+import org.springframework.stereotype.Component;
 
 @WebService
 @Component

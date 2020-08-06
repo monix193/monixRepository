@@ -6,6 +6,6 @@ import com.monix.work.entities.Groupe;
 
 public interface GroupeMetier {
 
-	public Groupe saveGroupe(Groupe c);
-	public List <Groupe> listGroupe();
+	Groupe saveGroupe(Groupe c);
+	List <Groupe> listGroupe();
 }
