@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: Jobber
-        image: monix193/jobber
+        image: monix193/jobber:latest
         resources:
           limits:
             memory: "128Mi"
