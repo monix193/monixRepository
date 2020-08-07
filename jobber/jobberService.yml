@@ -7,7 +7,7 @@ spec:
     ports:
     - name:  name-of-the-port
       port:  80
-      targetPort:  80
+      targetPort:  8080
       nodePort: 30008
     selectors:
       app: jobber-app

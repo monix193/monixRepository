@@ -12,11 +12,12 @@ import java.util.List;
 @RestController
 public class StudentController {
 	
+	
 	private static List<Student>  STUDENTS= Arrays.asList(
-		new Student (1, "jules diop"),
-		new Student (2, "mareme fall"),
-		new Student (3, "Malick sane"),
-		new Student (4, "fatou kane")
+		new Student (1L, "jules diop"),
+		new Student (2L, "mareme fall"),
+		new Student (3L, "Malick sane"),
+		new Student (4L, "fatou kane")
 	);
 
     @GetMapping(value = "/hello")
@@ -27,7 +28,7 @@ public class StudentController {
 	@GetMapping
 	public Student getStudent(@PathVariable  Long studentId){ 
 		return STUDENTS.stream()
-		.filter(student-> studentId.equals(student.getStudentId()))
+		.filter(student-> studentId.equals(student.getId()))
 		.findFirst()
 		.orElseThrow(() -> new IllegalStateException("Student "+studentId+" does not exists"));
 	}
