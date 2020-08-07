@@ -1,7 +1,7 @@
 node{
-    stage('git clone'){
+    /* stage('git clone'){
     git credentialsId: 'github_creds', url: 'https://github.com/monix193/monixRepository.git'
-    }
+    } */
     stage('maven clean and build'){
         dir("${env.WORKSPACE}/jobber"){
         sh "pwd"
