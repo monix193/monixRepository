@@ -13,7 +13,6 @@ spec:
         app: jobber-app
         type: backend
     spec:
-      nodeName: ubuntu
       containers:
       - name: jobber-ctner
         image: monix193/jobber:latest
