@@ -1,19 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Jobber
+  name: jobber
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: Jobber
+      app: jobber-app
   template:
     metadata:
       labels:
-        app: Jobber
+        app: jobber-app
+        type: backend
     spec:
       containers:
-      - name: Jobber
+      - name: jobber-ctner
         image: monix193/jobber:latest
         resources:
           limits:
