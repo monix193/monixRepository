@@ -1,0 +1,46 @@
+node{
+    stage('git clone'){
+    git credentialsId: 'github_creds', url: 'https://github.com/monix193/monixRepository.git'
+    }
+    stage('maven clean and build'){
+        dir("${env.WORKSPACE}/jobber"){
+        sh "pwd"
+        def mavenHome = tool name: 'maven-3.6.3', type: 'maven'
+        mavenCmd="${mavenHome}/bin/mvn "
+        sh "${mavenCmd} clean package"
+    }
+    }
+    stage('builder image jobber'){
+        dir("${env.WORKSPACE}/jobber"){
+        sh 'docker build -t  monix193/jobber .'
+        }
+    }
+     stage('builder image jobber'){
+        dir("${env.WORKSPACE}/jobber"){
+        sh 'docker build -t  monix193/jobber .'
+        }
+    }
+    stage('push image jobber'){
+        dir("${env.WORKSPACE}/jobber"){
+            withCredentials([string(credentialsId: 'DOCKERHUB_CREDS', variable: 'DOCKERHUB_CREDS')]) {
+              sh "docker login -u monix193 -p ${DOCKERHUB_CREDS}"
+            }
+        sh 'docker push monix193/jobber'
+        }
+    }
+    stage('Deploy Application In K8S'){
+        dir("${env.WORKSPACE}/jobber"){
+       sh "kubectl apply -f deployApplication.yml"
+        }
+    }
+    /*stage('Deploy Application In K8S'){
+        dir("${env.WORKSPACE}/jobber"){
+        kubernetesDeploy(
+            configs: 'deployApplication.yml',
+            kubeconfigId: 'KUBERNETES_CLUSTER_CONFIG',
+            enableConfigSubstitution: true
+            )
+        }
+    }*/
+    
+}
